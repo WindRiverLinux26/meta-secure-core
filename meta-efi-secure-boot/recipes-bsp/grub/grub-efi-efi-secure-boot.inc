@@ -105,6 +105,8 @@ do_install:append:class-native() {
 do_install:append:class-target() {
     local menu="${UNPACKDIR}/boot-menu.inc"
 
+    sed -i 's/DISTRO_NAME_placeholder/${DISTRO_NAME} ${DISTRO_VERSION}/g' "$menu"
+
     # Enable the default IMA rules if IMA is enabled and luks is disabled.
     # This is because unseal operation will fail when any PCR is extended
     # due to updating the aggregate integrity value by the default IMA rules.
